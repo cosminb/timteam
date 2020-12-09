@@ -39,8 +39,8 @@ const MainBarSign = () => {
     r: i * size,
     fill: 'none',
     strokeWidth: size,
-    opacity: Math.random(),
-    stroke: '#007abc',
+    // opacity: Math.random(),
+    stroke: 'orange',
 
     transform: `scaleY(${1 - Math.random() * 2})`,
     config: {

@@ -20,8 +20,6 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
   const update = props => {
     guard.update({ buildings: 'buildings', colors: 'colors', buildingSizes: 'buildingSizes' });
 
-    console.log(guard.value);
-
     let cellSize = 55;
     let cellSize2 = 75;
     let rows = 10;
@@ -45,23 +43,23 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
         building.row * cellSize - box.sizeZHalf,
       ];
 
-      let poseCamera = [
-        180 * Math.cos((Math.PI * 30) / 180) + position[0],
-        height + 10,
-        180 * Math.sin((Math.PI * 30) / 180) + position[2],
-      ];
+      // let poseCamera = [
+      //   180 * Math.cos((Math.PI * 30) / 180) + position[0],
+      //   height + 10,
+      //   180 * Math.sin((Math.PI * 30) / 180) + position[2],
+      // ];
 
-      let poseTarget = [
-        50 * Math.cos((Math.PI * -30) / 180) + position[0],
-        height,
-        50 * Math.sin((Math.PI * -30) / 180) + position[2],
-      ];
+      // let poseTarget = [
+      //   50 * Math.cos((Math.PI * -30) / 180) + position[0],
+      //   height,
+      //   50 * Math.sin((Math.PI * -30) / 180) + position[2],
+      // ];
 
-      let pose = {
-        lookAt: poseTarget,
-        position: poseCamera,
-        animate: true,
-      };
+      // let pose = {
+      //   lookAt: poseTarget,
+      //   position: poseCamera,
+      //   animate: true,
+      // };
 
       return {
         component: Building,
@@ -76,8 +74,8 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
           top: [scale[0] / 2, scale[1], scale[2] / 2],
           hasBilboard: building.issite,
           opacity: 0.9,
-
-          pose: pose,
+          height,
+          // pose: pose,
           issite: building.issite,
         },
       };

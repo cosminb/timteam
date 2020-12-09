@@ -2,8 +2,11 @@ import React from 'react';
 import { useFrame, useThree } from 'react-three-fiber';
 import { OrbitControls } from '@react-three/drei';
 import { useSpring } from 'react-spring/three';
+import { useData } from '../FlowGrid/DataCtx';
 
-export const CameraRotation = ({ camera }) => {
+export const CameraRotation = () => {
+  const [data, versions] = useData({ camera: 'camera' });
+
   const { camera: cc } = useThree();
 
   const ref = React.useRef();
@@ -16,12 +19,14 @@ export const CameraRotation = ({ camera }) => {
   const [animating, setAnimating] = React.useState(false);
 
   React.useEffect(() => {
-    if (!cc || !camera || camera.animate === false) return;
+    let camera = data && data.camera;
+
+    if (!cc || !camera) return;
 
     let currentCamera = cc.clone();
 
     lastCamera.current = 1;
-    console.log(camera.version);
+    // console.log(camera.version);
 
     let newSprings = { from: {}, to: {} };
     let hasChanged = false;
@@ -59,7 +64,7 @@ export const CameraRotation = ({ camera }) => {
       currentCamera.quaternion.copy(startRotation);
     }
 
-    console.log('hasChanged', newSprings);
+    // console.log('hasChanged', newSprings);
 
     let lookAt = camera.lookAt;
     if (hasChanged) {
@@ -91,28 +96,21 @@ export const CameraRotation = ({ camera }) => {
     lastCamera.current = 0;
 
     //else setNewSprings({});
-  }, [camera.version]);
+  }, [versions && versions.camera]);
 
   const springRef = React.useRef();
 
   React.useEffect(() => {
-    console.log('restarting springs ');
-    // if (springRef.current) springRef.current.start();
-  }, [newSprings]);
-  console.log(springRef, springs, camera, newSprings);
+    let camera = data && data.camera;
 
-  // springs.position._start();
-  if (springs.position) {
-    console.log(springs.position._phase);
-  }
+    if (!camera) return;
 
-  React.useEffect(() => {
     if (camera.animate === false) {
       lastCamera.current = 1;
 
       const controls = ref.current;
 
-      console.log(controls);
+      // console.log(controls);
 
       if (!controls.target) return;
 
@@ -123,16 +121,12 @@ export const CameraRotation = ({ camera }) => {
       // cc.position.fromArray(camera.position);
       // cc.lookAt(...camera.lookAt);
       // cc.up = new THREE.Vector3(0, 0, 0);
-      console.log(camera.position, camera.lookAt);
+      // console.log(camera.position, camera.lookAt);
     }
-  }, [camera.version]);
+  }, [versions && versions.camera]);
 
   useFrame(state => {
-    const time = state.clock.getElapsedTime();
-
     let _camera = state.camera;
-
-    window.camera = state.camera;
 
     if (lastCamera.current) return;
 
@@ -144,41 +138,13 @@ export const CameraRotation = ({ camera }) => {
       _camera.quaternion.fromArray(value);
 
       let value2 = springs.position.get();
-      // console.log(value);
       _camera.position.fromArray(value2);
     }
-    // if (springs.quaternion && springs.quaternion.is('ACTIVE')) {
-    //   let value = springs.quaternion.get();
-    //   // console.log(value);
-    //   _camera.quaternion.fromArray(value);
-    // }
-    // if (springs.position && springs.position.is('ACTIVE')) {
-    //   let value = springs.position.get();
-    //   // console.log(value);
-    //   _camera.position.fromArray(value);
-    // }
-    // if (springs.lookAt.is('ACTIVE')) {
-    //   let value = springs.lookAt.get();
-    //   _camera.lookAt(...value);
-    // }
-    // console.log(springs.position.get());
-    // console.log(springs);
-    // let transition = transitionRef.current;
-    // if (!transition.position.isDone) {
-    //   if (spring.is('IDLE')) {
-    //     transition.position.isDone = true;
-    //     transition.lookAt.isDone = true;
-    //   }
-    //   let position = transition.position.value();
-    //   _camera.position.set(...position);
-    //   let value = transition.lookAt.isDone ? transition.lookAt.end : transition.lookAt.value();
-    //   _camera.lookAt(...value); //0, 0, 0);
-    // }
   });
 
-  React.useEffect(() => {
-    ref.current.reset();
-  }, []);
-  console.log(animating);
+  // React.useEffect(() => {
+  //   ref.current.reset();
+  // }, []);
+  // // console.log(animating);
   return <OrbitControls ref={ref} enabled={!animating} />;
 };

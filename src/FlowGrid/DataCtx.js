@@ -2,8 +2,10 @@ import React from 'react';
 
 export const DataCtx = React.createContext({});
 
-const processor_getItemValue = function () {
-  return this.value;
+const processor_getItemValue = function (props, resolve) {
+  resolve(this.value);
+
+  return {};
 };
 class Register {
   constructor(dataLayer) {
@@ -18,12 +20,14 @@ class Register {
       processor: newItem.processor || processor_getItemValue,
       props: Object.assign({}, newItem.props),
       value: newItem.value,
+      version: 0,
+      specs: newItem,
     };
 
     this.items[key] = item;
     this.dataLayer.addBubble(key, item);
 
-    let result = item.processor(item.props, item.triggerUpdate, this.dataLayer);
+    let result = item.processor(item.props, item.triggerUpdate, this.dataLayer, item);
 
     if (_.isFunction(result)) {
       item.unwind = result;
@@ -58,10 +62,11 @@ class Register {
 
     if (item.processor != newItem.processor) {
       this.removeItem(key);
-      this.addItem(key, item);
+      this.addItem(key, newItem);
       return;
     }
 
+    item.specs = newItem;
     if (item.shouldUpdate(newItem.props)) {
       //   console.log('should update', newItem);
       item.update(newItem.props);
@@ -109,7 +114,7 @@ export const useDataBubbles = dataSpecs => {
   //   React.useEffect(() => {
   let register = registerRef.current;
   if (register && register.update) register.update(dataSpecs);
-  console.log(register, actions);
+  // console.log(register, actions);
   //   }, [dataSpecs]);
 };
 
@@ -195,14 +200,27 @@ class BubblesManager {
 }
 
 export class DataLayer {
-  constructor() {
+  constructor(triggerUpdate) {
     this.bubbles = {};
 
     this.pubsub = new PubSub();
 
     this.bubbles = new BubblesManager(this);
+
+    this.triggerUpdateCb = triggerUpdate;
+
+    this.commands = {};
   }
 
+  registerCommands(commands) {
+    _.merge(this.commands, commands);
+  }
+
+  run(commandName, args) {
+    if (!this.commands[commandName]) return;
+
+    return this.commands[commandName](args, this);
+  }
   addBubble(key, bubble) {
     this.bubbles.addBubble(key, bubble);
   }
@@ -226,8 +244,8 @@ export class DataLayer {
     let guard = {
       fire: _.debounce(function (key) {
         // console.log('fired', this);
-        this.getValue();
-        this.version++;
+        guard.getValue();
+        guard.version++;
         fire();
       }, 100),
       watchedKeys: [],
@@ -237,7 +255,7 @@ export class DataLayer {
       update: function (newMap) {
         let newKeys = _.values(newMap);
         let changed = false;
-        _.each(this.watchedKeys, key => {
+        _.each(guard.watchedKeys, key => {
           if (!newKeys.includes(key)) {
             dataLayer.forget(key, guard);
             changed = true;
@@ -245,25 +263,25 @@ export class DataLayer {
         });
 
         _.each(newMap, (key, name) => {
-          if (!this.watchedKeys.includes(key)) {
+          if (!guard.watchedKeys.includes(key)) {
             dataLayer.watch(key, guard);
             changed = true;
           }
         });
 
-        this.map = newMap;
+        guard.map = newMap;
         if (changed) {
-          this.getValue();
-          this.version++;
+          guard.getValue();
+          guard.version++;
         }
       },
       getValue: function () {
-        this.value = _.mapValues(this.map, (source, target) => dataLayer.getValue(source));
-        this.versions = _.mapValues(this.map, (source, target) => dataLayer.getVersion(source));
-        return this.value;
+        guard.value = _.mapValues(guard.map, (source, target) => dataLayer.getValue(source));
+        guard.versions = _.mapValues(guard.map, (source, target) => dataLayer.getVersion(source));
+        return guard.value;
       },
       unwind: function () {
-        _.each(this.watchedKeys, key => {
+        _.each(guard.watchedKeys, key => {
           dataLayer.forget(key, guard);
         });
       },
@@ -285,6 +303,8 @@ export class DataLayer {
     return <DataCtx.Provider value={this}>{node}</DataCtx.Provider>;
   }
 
+  getSubContext() {}
+
   registerData(key, item) {}
 }
 
@@ -292,13 +312,13 @@ export const useData = map => {
   const actions = React.useContext(DataCtx);
 
   const guardRef = React.useRef({});
-  const [version, setVersion] = React.useReducer(v => v + 1, 0);
+  const [version, forceRefresh] = React.useReducer(v => v + 1, 0);
   const [value, setValue] = React.useState(null);
 
   React.useEffect(() => {
     const triggerUpdate = () => {
       //console.log('triggerUpdate', guard);
-      setVersion();
+      forceRefresh();
     };
     let guard = actions.watchAll(triggerUpdate);
 
@@ -314,5 +334,5 @@ export const useData = map => {
     // setValue(guard.getValue());
   }, [map]);
 
-  return guardRef.current.value;
+  return [guardRef.current.value || {}, guardRef.current.versions || {}];
 };

@@ -5,7 +5,9 @@ import { Ground } from '../Space3D/Ground';
 import { MakeNode } from '../FlowGrid/MakeNode';
 
 export const Hud = React.memo(({ style }) => {
-  const data = useData({ buildings: 'buildingsNodes' });
+  const [data] = useData({ buildings: 'buildingsNodes', camera: 'camera', testData: 'testData' });
+
+  console.log(data.testData);
 
   let cellSize = 55;
   let cellSize2 = 75;
@@ -13,14 +15,14 @@ export const Hud = React.memo(({ style }) => {
   let cols = 10;
   let blockWidth = 35;
 
-  let camera = React.useMemo(
-    () => ({
-      position: [304, 180, 304],
-      lookAt: [0, 0, 0],
-      version: 0,
-    }),
-    []
-  );
+  // let camera = React.useMemo(
+  //   () => ({
+  //     position: [304, 180, 304],
+  //     lookAt: [0, 0, 0],
+  //     version: 0,
+  //   }),
+  //   []
+  // );
 
   const [version, setVersion] = React.useReducer(v => v + 1, 0);
 
@@ -33,22 +35,26 @@ export const Hud = React.memo(({ style }) => {
   // console.log('done building');
   const dataRef = React.useRef({});
 
+  dataRef.current = data;
+
   const actions = React.useMemo(
     () => ({
       changeCamera: (position, lookAt, animate = true) => {
-        camera.version++;
-        if (position) camera.position = position;
-        else {
-          delete camera.position;
-        }
-        if (lookAt) camera.lookAt = lookAt;
-        else {
-          delete camera.lookAt;
-        }
+        dataRef.current.camera.changeCamera({ position, lookAt, animate });
 
-        if (animate !== undefined) camera.animate = animate;
-        else camera.animate = true;
-        setVersion();
+        // camera.version++;
+        // if (position) camera.position = position;
+        // else {
+        //   delete camera.position;
+        // }
+        // if (lookAt) camera.lookAt = lookAt;
+        // else {
+        //   delete camera.lookAt;
+        // }
+
+        // if (animate !== undefined) camera.animate = animate;
+        // else camera.animate = true;
+        // setVersion();
       },
     }),
     []
@@ -75,7 +81,7 @@ export const Hud = React.memo(({ style }) => {
         ...style,
       }}
       className="frame">
-      <SpaceCanvas camera={camera}>
+      <SpaceCanvas>
         <Ground
           box={{
             sizeX: cols * cellSize + blockWidth / 2,

@@ -7,7 +7,7 @@ import { DataCtx } from '../FlowGrid/DataCtx';
 import { useContextBridge } from '@react-three/drei';
 import { CameraRotation } from './CameraRotation';
 
-export const SpaceCanvas = ({ children, camera }) => {
+export const SpaceCanvas = ({ children }) => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   const ContextBridge = useContextBridge(DataCtx);
@@ -51,7 +51,7 @@ export const SpaceCanvas = ({ children, camera }) => {
         />
         <ambientLight color="white" intensity={3} />
 
-        <CameraRotation camera={camera} />
+        <CameraRotation />
         {children}
       </ContextBridge>
     </Canvas>

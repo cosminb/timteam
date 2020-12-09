@@ -13,24 +13,53 @@ import { MakeNode } from './FlowGrid/MakeNode';
 import { Bg } from './Svgraphics/Bg';
 import { specTree } from './Specs/specTree';
 
+import * as commands from './Actions/main.js';
+
 const App = () => {
   console.log('app');
 
   let [version, setVersion] = React.useReducer(v => v + 1, 0);
 
+  const data = React.useMemo(() => {
+    let data = new DataLayer();
+
+    data.registerCommands(commands);
+
+    data.specTree = specTree;
+
+    data.dispatcher = {
+      data: data,
+      triggerUpdate: setVersion,
+      specTree,
+
+      renderNode: function (specs) {
+        return MakeNode(specs || this.specTree);
+      },
+
+      change: function (newTree, doRender = true) {
+        _.merge(this.specTree, newTree);
+        if (doRender) {
+          this.triggerUpdate();
+        }
+      },
+    };
+
+    window.dispatcher = data.dispatcher;
+    window.ub = data;
+
+    return data;
+  }, []);
+
   //tinker from the console
+
+  window.xdata = data;
   window.specTree = specTree;
   window.changeIT = () => {
     setVersion();
   };
 
-  let node = MakeNode(specTree);
+  let node = data.dispatcher.renderNode(); //MakeNode(specTree);
   console.log(specTree);
-
-  const data = React.useMemo(() => {
-    let data = new DataLayer();
-    return data;
-  }, []);
 
   let svg = <Bg />;
 

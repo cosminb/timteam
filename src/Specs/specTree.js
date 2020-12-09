@@ -9,6 +9,7 @@ import { Console } from '../Components/Console';
 import { Hud } from '../Components/Hud';
 import { Card5 } from '../Svgraphics/Cards/Card5';
 import { InfoPanel } from '../Components/InfoPanel';
+import { CameraPositionNode } from '../DataNodes/CameraPositionNode';
 
 export const specTree = {
   app: {
@@ -27,6 +28,13 @@ export const specTree = {
           },
         },
         data: {
+          camera: {
+            processor: CameraPositionNode,
+            props: {
+              position: [304, 180, 304],
+              lookAt: [0, 0, 0],
+            },
+          },
           colors: {
             value: {
               buildings: {
@@ -53,6 +61,12 @@ export const specTree = {
           buildingsNodes: {
             processor: ProcessBuildings,
             props: {},
+          },
+
+          testData: {
+            value: {
+              x: 12,
+            },
           },
         },
         subs: {

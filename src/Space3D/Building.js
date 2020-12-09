@@ -25,9 +25,9 @@ export const Building = React.memo(
 
     const clicked = issite
       ? () => {
-          actionsCtx.hud.changeCamera(pose.position, pose.lookAt, pose.animate);
+          actionsCtx.run('FocusBuilding', { index }); //hud.changeCamera(pose.position, pose.lookAt, pose.animate);
 
-          console.log(pose);
+          // console.log(pose);
         }
       : null;
     const bilboard = hasBilboard && (
