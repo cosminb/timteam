@@ -1,0 +1,89 @@
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+  color: white;
+}
+
+.salutare {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-bottom: 10px;
+  border-left: 1px solid;
+  pointer-events: none;
+  font-variant: small-caps;
+  width: 400px;
+}
+
+.card {
+  // background: #fafbfc;
+
+  border: 2px double #007abc65;
+  background-color: #007abc45;
+  mix-blend-mode: screen;
+  overflow: hidden;
+  box-shadow: 0px 0px 38px 0px rgba(0, 1, 2, 0.1);
+
+  margin: 30px 0px;
+  margin-top: 0px;
+}
+
+.frame {
+  // background: #fafbfc;
+
+  border: 2px double #007abc65;
+  background-color: #007abc45;
+  //mix-blend-mode: screen;
+  overflow: hidden;
+  box-shadow: 0px 0px 38px 0px rgba(0, 1, 2, 0.1);
+
+  //margin: 30px 0px;
+}
+
+.circle {
+  transform-origin: center;
+}
+
+.infopanel {
+  background-color: #00000023;
+  margin: 30px;
+  z-index: 200000000;
+  backdrop-filter: blur(5px);
+  border: 1px solid gold;
+  position: relative;
+  box-sizing: border-box;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.iconFrame {
+  border: 1px double #007abc95;
+}
+
+.mainBar {
+  display: grid;
+  grid-template: 'sign output' 1fr 'sign input' 50px / 100px 1fr;
+  height: 100%;
+}
+
+.maininputinput {
+  background: none;
+  outline: none;
+  border: none;
+}
