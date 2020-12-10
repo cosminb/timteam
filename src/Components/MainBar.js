@@ -245,11 +245,11 @@ const VoiceCommands = {
       if (this.interim_transcript) {
         this.restartTimer();
       } else this.executeCommands();
-    }, 1000);
+    }, 300);
   },
 
   executeCommands: function () {
-    this.recognition.stop();
+    // this.recognition.stop();
     this.stopTimer();
     this.updateState(false);
 
