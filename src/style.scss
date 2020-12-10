@@ -1,3 +1,55 @@
+
+$primary-light: #739dd3;
+$dark-one: #10171f;
+$dark-two: #19232f;
+$dark-three: #202d3b;
+$dark-four: #293848;
+
+$slate-two: #607185;
+$slate-three: #7d8fa3;
+$slate-four: #a5b4c4;
+$off-white: #e3e9f0;
+$white: #ffffff;
+
+$primary-dark: #3f85d1;
+$primary-text: #8dbfff;
+$secondary-dark: #e0b931;
+$secondary-medium: #e3c149;
+$secondary-light: #eece5c;
+
+$primary-transparent-1: rgba(63, 133, 209, 0.08);
+$primary-transparent-2: rgba(63, 133, 209, 0.14);
+$red: #b7242a;
+$dark-grey-blue: #344559;
+$primary-medium: #5b96d5;
+$blue-semitransparent-bg-1: rgba(91, 150, 213, 0.15);
+$blue-semitransparent-bg-2: rgba(91, 150, 213, 0.08);
+$slate: #485769;
+
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5em;
+
+}
 html,
 body,
 #root {
