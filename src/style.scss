@@ -145,3 +145,18 @@ body,
   outline: none;
   border: none;
 }
+
+.frame{
+  height:100%;
+  width: 100%;
+  overflow: hidden;
+}
+button{
+
+}
+
+ .card, .frame, div.infopanel{
+   border-radius: 3px ;
+   padding:5px;
+   margin-top: 10px;
+ }

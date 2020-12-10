@@ -70,24 +70,24 @@ export const Hud = React.memo(({ style }) => {
   window.actions = actions;
 
   return (
-    <div
-      style={{
-        borderRadius: 10,
-        height: '100%',
-        width: '100%',
-        overflow: 'hidden',
-        ...style,
+        <div
+            style={{
+                ...style,
       }}
-      className="frame">
-      <SpaceCanvas>
+            className="frame">
+            <p>Brivo Site 3D Viewer</p>
+                <SpaceCanvas>
+
         <Ground
           box={{
             sizeX: cols * cellSize + blockWidth / 2,
             sizeZ: rows * cellSize + blockWidth / 2,
           }}
         />
+
         <group>{buildingsNodes}</group>
       </SpaceCanvas>
-    </div>
+            </div>
+
   );
 });
