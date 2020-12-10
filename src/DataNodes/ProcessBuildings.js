@@ -61,13 +61,25 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
       //   animate: true,
       // };
 
+      let colorItem = '';
+
+      if(building.hasError) {
+        colorItem = '#e60000';
+      } else if(!building.issite) {
+        colorItem = '#333'
+      } else {
+        colorItem = '#14679f'
+      }
+      
+      console.log("colorItem ", colorItem);
+
       return {
         component: Building,
 
         props: {
           position: position,
           scale: scale,
-          color: !building.issite ? '#333' : '#14679f',
+          color: colorItem,
           key: building.index,
           index: building.index,
           //top: [scale[0] / 2, scale[1], scale[2] / 2],
