@@ -64,14 +64,12 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
       let colorItem = '';
 
       if(building.hasError) {
-        colorItem = '#e60000';
+        colorItem = '#800000';
       } else if(!building.issite) {
         colorItem = '#333'
       } else {
-        colorItem = '#14679f'
+        colorItem = '#003d99'
       }
-      
-      console.log("colorItem ", colorItem);
 
       return {
         component: Building,

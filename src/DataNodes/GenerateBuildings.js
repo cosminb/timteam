@@ -29,6 +29,10 @@ const GetBuildingsGrid = ({ cols, rows }) => {
     neighbours: buildings.slice(siteBuildings),
   };
 
+  result.all.sort((a, b) => {
+    return a.index-b.index
+  });
+
   result.site.forEach((item, index) => {
     item.issite = true;
     item.siteIndex = index;
