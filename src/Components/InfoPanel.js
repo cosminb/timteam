@@ -22,7 +22,7 @@ export const InfoPanel = ({ style }) => {
     <a.div style={animatedStyle} className="infopanel">
       <div>
         INFO panel
-        <button onClick={handleClose}>close</button>
+        <button onClick={handleClose}>Close</button>
       </div>
     </a.div>
   );
