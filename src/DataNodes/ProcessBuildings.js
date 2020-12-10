@@ -67,7 +67,7 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
         props: {
           position: position,
           scale: scale,
-          color: !building.issite ? '#333' : 'red',
+          color: !building.issite ? '#333' : '#14679f',
           key: building.index,
           index: building.index,
           //top: [scale[0] / 2, scale[1], scale[2] / 2],

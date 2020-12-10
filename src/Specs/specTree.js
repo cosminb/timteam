@@ -97,8 +97,15 @@ export const specTree = {
             },
 
             subs: [
-              { component: Card },
-              { component: Card3 },
+              /* { component: Card }, */
+              {
+                component: Card3,
+                /* processor: GenerateBuildings,
+                props: {
+                  cols: 10,
+                  rows: 10,
+                }, */
+              },
               { component: Card4 },
               { component: Card5 },
             ],
@@ -118,8 +125,9 @@ export const specTree = {
               style: {
                 gridArea: 'hud',
                 width: '30%',
-                height: '30%',
+                height: '91%',
               },
+              //selectedSite: 
             },
           },
         },
