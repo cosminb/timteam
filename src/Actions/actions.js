@@ -25,13 +25,31 @@ export const action_overview = ({}, data) => {
   data.updateApp();
 };
 
-export const ChangeCard = ({ id, props = {}, spec = {}, remove = false }) => {
-  let path = 'app.subs.root.subs.sidebar.subs.' + id;
+export const command_run = ({ command }, data) => {
+  let tokens = command.split(/[^\w\d]+/);
 
-  if (remove) _.unset(data.specTree, path);
-  else {
-    let component = _.get(data.specTree, path);
+  console.log(command, tokens);
+  let commandsMap = [
+    {
+      commandHead: 'show site',
+      action: (tokens, data) => {
+        data.run('action_focus_building', { index: parseInt(tokens[2]) });
+      },
+    },
 
-    _.merge(component, { props, ...spec });
+    {
+      commandHead: 'zoom out',
+      action: (tokens, data) => {
+        data.run('action_overview', { index: parseInt(tokens[2]) });
+      },
+    },
+  ];
+
+  for (var i = 0; i < commandsMap.length; i++) {
+    let commandTpl = commandsMap[i];
+    if (command.startsWith(commandTpl.commandHead)) {
+      commandTpl.action(tokens, data);
+      return;
+    }
   }
 };
