@@ -93,12 +93,14 @@ export const specTree = {
             props: {
               style: {
                 gridArea: 'sidebar',
+                display: 'flex',
+                flexDirection: 'column',
               },
             },
 
             subs: [
               { component: Card3,},
-              { component: Card4 },
+
               { component: Card5 },
             ],
           },

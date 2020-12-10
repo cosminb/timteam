@@ -8,7 +8,6 @@ import { _ } from '../../jams/common';
 
 export const Card3 = () => {
   const [data] = useData({ buildings: 'buildings', camera: 'camera', testData: 'testData' });
-  console.log("data", data);
   const _ = require('lodash');
 
   const rows = 10;
