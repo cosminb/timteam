@@ -1,7 +1,15 @@
 import { _ } from '../jams/common';
 
 export const GenerateBuildings = (props, resolve) => {
-  const update = props => resolve(GetBuildingsGrid(props));
+  let buildingGrid = GetBuildingsGrid(props);
+
+  setInterval(() => {
+    let index = Math.floor(Math.random() * buildingGrid.site.length); 
+    buildingGrid.site[index].hasError = Math.random() < 0.5;
+    resolve(buildingGrid);
+  }, 3000);
+
+  const update = props => resolve(buildingGrid);
 
   update(props);
   return {
@@ -36,7 +44,7 @@ const GetBuildingsGrid = ({ cols, rows }) => {
   result.site.forEach((item, index) => {
     item.issite = true;
     item.siteIndex = index;
-    item.hasError = Math.random() < 0.3;
+    item.hasError = Math.random() < 0.5;
   });
 
   return result;

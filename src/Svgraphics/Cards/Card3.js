@@ -26,7 +26,7 @@ export const Card3 = () => {
           opacity: 0.9,
           fill: setSquareColor(data.buildings.all[index]),
           config: {
-            frequency: 2,
+            frequency: 0.5,
             damping: 1,
           },
         })
@@ -34,31 +34,38 @@ export const Card3 = () => {
     }
   }, [data]);
 
+  let actionsCtx = React.useContext(DataCtx);
+
   const setSquareColor = (building) => {
     let colorItem = '';
 
-      if(building.hasError) {
-        colorItem = '#800000';
-      } else if(!building.issite) {
-        colorItem = '#333'
-      } else {
-        colorItem = '#003d99'
-      }
+    if (building.hasError) {
+      colorItem = '#800000';
+    } else if (!building.issite) {
+      colorItem = '#333'
+    } else {
+      colorItem = '#003d99'
+    }
     return colorItem;
   };
 
   let nodes = _.times(100, i => {
     let y = Math.floor(i / 10) * cellSize;
     let x = (i % 10) * cellSize;
-    return <animated.rect x={x} y={y} width={blockSize} height={blockSize} style={springs[i]} />;
+    let isSite = false;
+    if (!_.isEmpty(data)) {
+      isSite = data.buildings.all[i].issite
+    } 
+    const clicked = isSite ? () => actionsCtx.run('action_focus_building', { index: i }) : null;
+    return <animated.rect x={x} y={y} width={blockSize} height={blockSize} style={springs[i]} onClick={clicked} />;
   });
+
   return (
     <>
-
       <div className="card">
         <div className="sectionTitle">Sites</div>
         <svg width="100%" height="300px">
-          <g style={{ translate: '25px 25px' }}>{nodes}</g>
+          <g style={{ translate: '25px 25px' }} >{nodes}</g>
         </svg>
       </div>
     </>
