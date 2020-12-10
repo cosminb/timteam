@@ -102,9 +102,10 @@ export const Card5 = () => {
 
   return (
     <>
-      <div className="sectionTitle">Notifications</div>
-      <div className="card" style={{ position: 'relative', height: 250 }}>
-        {nodes}
+      
+      <div className="card" style={{ position: 'relative', height: 250, flex: '1'}}>
+        <div className="sectionTitle">Notifications</div>
+        <div style={{ position: 'relative'}}>{nodes}</div>
       </div>
     </>
   );

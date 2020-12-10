@@ -93,20 +93,14 @@ export const specTree = {
             props: {
               style: {
                 gridArea: 'sidebar',
+                display: 'flex',
+                flexDirection: 'column',
               },
             },
 
             subs: [
-              /* { component: Card }, */
-              {
-                component: Card3,
-                /* processor: GenerateBuildings,
-                props: {
-                  cols: 10,
-                  rows: 10,
-                }, */
-              },
-              { component: Card4 },
+              { component: Card3,},
+
               { component: Card5 },
             ],
           },
@@ -124,8 +118,8 @@ export const specTree = {
             props: {
               style: {
                 gridArea: 'hud',
-                width: '30%',
-                height: '91%',
+                width: '0%',
+                height: '0%',
               },
               //selectedSite: 
             },
