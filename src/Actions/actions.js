@@ -26,6 +26,8 @@ export const action_overview = ({}, data) => {
 };
 
 export const command_run = ({ command }, data) => {
+  command = command.trim();
+
   let tokens = command.split(/[^\w\d]+/);
 
   console.log(command, tokens);
