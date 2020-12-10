@@ -20,10 +20,10 @@ export const Card4 = () => {
 
     width: Math.floor(Math.random() * 100) + '%',
     height: height,
-    opacity: Math.random() + 0.4,
+    opacity: 0.9,
     //    opacity: Math.min(0.8, Math.random() + 0.2),
 
-    fill: Math.random() < 0.1 ? 'orange' : '#007abc',
+    fill: Math.random() < 0.05 ? 'green' : '#14679f',
 
     config: {
       frequency: 2,
@@ -45,10 +45,13 @@ export const Card4 = () => {
   });
 
   return (
-    <div className="card">
-      <svg width="100%" height="115px">
-        <g style={{ translate: '25px 25px' }}>{nodes}</g>
-      </svg>
-    </div>
+    <>
+      <div className="sectionTitle">Devices per Floor</div>
+      <div className="card">
+        <svg width="100%" height="115px">
+          <g style={{ translate: '25px 25px' }}>{nodes}</g>
+        </svg>
+      </div>
+    </>
   );
 };
