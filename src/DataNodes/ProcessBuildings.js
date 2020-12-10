@@ -34,7 +34,7 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
     if (!guard.value.buildings.all) return;
 
     let value = _.map(guard.value.buildings.all, building => {
-      let height = building.issite ? 50 : Math.random() * 20 + 10;
+      let height = building.issite ? 50 : building.height + 10;
       // console.log(building);
       let scale = [blockWidth, height, blockWidth];
       let position = [
@@ -63,12 +63,12 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
 
       let colorItem = '';
 
-      if(building.hasError) {
-        colorItem = '#800000';
-      } else if(!building.issite) {
-        colorItem = '#333'
+      if (building.hasError) {
+        colorItem = 'rgb(128, 30, 30)';
+      } else if (!building.issite) {
+        colorItem = 'rgb(51, 51, 51)';
       } else {
-        colorItem = '#003d99'
+        colorItem = 'rgb(30, 91, 183)';
       }
 
       return {

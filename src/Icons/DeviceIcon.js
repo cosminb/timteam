@@ -1,23 +1,21 @@
 import React from 'react';
 import { pathSegments } from './paths100.js';
 
-export const DeviceIcon = () => {
-  let random = () => pathSegments[Math.floor(Math.random() * pathSegments.length)];
+const getRandomIndex = arr => {
+  return Math.floor(Math.random() * arr.length);
+};
+const getRandomItem = arr => {
+  return arr[getRandomIndex(arr)];
+};
 
-  const getRandomIndex = arr => {
-    return Math.floor(Math.random() * arr.length);
-  };
-  const getRandomItem = arr => {
-    return arr[getRandomIndex(arr)];
-  };
+const getSegments = () => {
+  let d = getRandomItem(pathSegments);
+  d = Array.from(d.matchAll(/[A-Za-z]+[^A-Za-z]+/g)).map(i => i[0]);
 
-  const getSegments = () => {
-    let d = getRandomItem(pathSegments);
-    d = Array.from(d.matchAll(/[A-Za-z]+[^A-Za-z]+/g)).map(i => i[0]);
+  return d;
+};
 
-    return d;
-  };
-
+const getIconPaths = () => {
   let d = getSegments();
   while (d.length < 100) {
     let d2 = getSegments();
@@ -31,8 +29,13 @@ export const DeviceIcon = () => {
   d = d.join('') + 'z';
   if (d.charAt(0) != 'M') d = 'M' + d.substr(1);
 
+  return d;
+};
+
+export const DeviceIcon = () => {
+  let d = React.useMemo(() => getIconPaths(), []);
   return (
-    <svg width="20" height="20" className="iconFrame">
+    <svg width="20" height="20" className="iconFrame" viewBox="0 0 58.153 58.153">
       <path
         d={d}
         stroke="#007abc95"

@@ -5,7 +5,6 @@ import { DataCtx, useData } from '../../FlowGrid/DataCtx';
 import { GetColor } from '../../index';
 import { _ } from '../../jams/common';
 
-
 export const Card3 = () => {
   const [data] = useData({ buildings: 'buildings', camera: 'camera', testData: 'testData' });
   const _ = require('lodash');
@@ -21,29 +20,29 @@ export const Card3 = () => {
   React.useEffect(() => {
     if (!_.isEmpty(data)) {
       set(index => {
-        return ({
-          opacity: 0.9,
+        return {
+          opacity: data.buildings.all[index].issite ? 1 : 0.6,
           fill: setSquareColor(data.buildings.all[index]),
           config: {
             frequency: 0.5,
             damping: 1,
           },
-        })
+        };
       });
     }
   }, [data]);
 
   let actionsCtx = React.useContext(DataCtx);
 
-  const setSquareColor = (building) => {
+  const setSquareColor = building => {
     let colorItem = '';
 
     if (building.hasError) {
       colorItem = '#800000';
     } else if (!building.issite) {
-      colorItem = '#333'
+      colorItem = '#333';
     } else {
-      colorItem = '#003d99'
+      colorItem = '#003d99';
     }
     return colorItem;
   };
@@ -53,10 +52,19 @@ export const Card3 = () => {
     let x = (i % 10) * cellSize;
     let isSite = false;
     if (!_.isEmpty(data)) {
-      isSite = data.buildings.all[i].issite
-    } 
+      isSite = data.buildings.all[i].issite;
+    }
     const clicked = isSite ? () => actionsCtx.run('action_focus_building', { index: i }) : null;
-    return <animated.rect x={x} y={y} width={blockSize} height={blockSize} style={springs[i]} onClick={clicked} />;
+    return (
+      <animated.rect
+        x={x}
+        y={y}
+        width={blockSize}
+        height={blockSize}
+        style={springs[i]}
+        onClick={clicked}
+      />
+    );
   });
 
   return (
@@ -64,7 +72,7 @@ export const Card3 = () => {
       <div className="card">
         <div className="sectionTitle">Sites</div>
         <svg width="100%" height="300px">
-          <g style={{ translate: '25px 25px' }} >{nodes}</g>
+          <g style={{ translate: '25px 25px' }}>{nodes}</g>
         </svg>
       </div>
     </>

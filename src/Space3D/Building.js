@@ -13,9 +13,10 @@ export const Building = React.memo(
     const spring = useSpring({
       scale,
       position,
+      color,
       config: {
-        damping: 0.8,
-        frequency: 3,
+        damping: 0.5,
+        frequency: 1,
       },
     });
 
@@ -54,7 +55,12 @@ export const Building = React.memo(
           opacity={opacity}
         /> */}
 
-          <meshPhongMaterial attach="material" color={color} transparent={true} opacity={opacity} />
+          <a.meshPhongMaterial
+            attach="material"
+            color={spring.color}
+            transparent={true}
+            opacity={opacity}
+          />
         </a.mesh>
       </a.group>
     );
