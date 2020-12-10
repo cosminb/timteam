@@ -61,15 +61,21 @@ body,
 }
 
 .infopanel {
-  background-color: #00000023;
-  margin: 30px;
   z-index: 200000000;
-  backdrop-filter: blur(5px);
-  border: 1px solid gold;
   position: relative;
   box-sizing: border-box;
   align-self: flex-end;
   justify-self: flex-end;
+  overflow: hidden;
+  padding: 30px;
+  > div {
+    background-color: #00000053;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    border: 1px solid gold;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .iconFrame {

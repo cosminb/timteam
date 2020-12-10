@@ -36,19 +36,23 @@ export const specTree = {
             },
           },
           colors: {
-            value: {
-              buildings: {
-                site: 'red',
-                neighbour: 'blue',
+            props: {
+              value: {
+                buildings: {
+                  site: 'red',
+                  neighbour: 'blue',
+                },
               },
             },
           },
 
           buildingSizes: {
-            value: {
-              cellSize: 75,
-              blockSize: 45,
-              hieghtUnit: 10,
+            props: {
+              value: {
+                cellSize: 75,
+                blockSize: 45,
+                hieghtUnit: 10,
+              },
             },
           },
           buildings: {
@@ -64,8 +68,10 @@ export const specTree = {
           },
 
           testData: {
-            value: {
-              x: 12,
+            props: {
+              value: {
+                x: 12,
+              },
             },
           },
         },

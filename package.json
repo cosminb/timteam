@@ -23,6 +23,7 @@
     "jest": "^26.3.0",
     "node-sass": "^4.14.1",
     "plop": "^2.7.4",
+    "replace-in-file": "^6.1.0",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",

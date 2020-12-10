@@ -7,8 +7,6 @@ import { MakeNode } from '../FlowGrid/MakeNode';
 export const Hud = React.memo(({ style }) => {
   const [data] = useData({ buildings: 'buildingsNodes', camera: 'camera', testData: 'testData' });
 
-  console.log(data.testData);
-
   let cellSize = 55;
   let cellSize2 = 75;
   let rows = 10;

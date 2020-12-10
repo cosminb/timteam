@@ -13,10 +13,10 @@ import { MakeNode } from './FlowGrid/MakeNode';
 import { Bg } from './Svgraphics/Bg';
 import { specTree } from './Specs/specTree';
 
-import * as commands from './Actions/main.js';
+import * as commands from './Actions';
 
 const App = () => {
-  console.log('app');
+  // console.log('app');
 
   let [version, setVersion] = React.useReducer(v => v + 1, 0);
 
@@ -27,17 +27,18 @@ const App = () => {
 
     data.specTree = specTree;
 
+    data.updateApp = setVersion;
+
     data.dispatcher = {
       data: data,
       triggerUpdate: setVersion,
-      specTree,
 
       renderNode: function (specs) {
-        return MakeNode(specs || this.specTree);
+        return MakeNode(specs || data.specTree);
       },
 
       change: function (newTree, doRender = true) {
-        _.merge(this.specTree, newTree);
+        _.merge(data.specTree, newTree);
         if (doRender) {
           this.triggerUpdate();
         }
@@ -52,16 +53,12 @@ const App = () => {
 
   //tinker from the console
 
-  window.xdata = data;
-  window.specTree = specTree;
-  window.changeIT = () => {
-    setVersion();
-  };
+  let oldRef = React.useRef();
 
+  oldRef.current = data.specTree;
   let node = data.dispatcher.renderNode(); //MakeNode(specTree);
-  console.log(specTree);
 
-  let svg = <Bg />;
+  let svg = <Bg key="bg" />;
 
   node = [svg, node];
   return data.wrapper(node);

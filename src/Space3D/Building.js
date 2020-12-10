@@ -23,13 +23,7 @@ export const Building = React.memo(
 
     let actionsCtx = React.useContext(DataCtx);
 
-    const clicked = issite
-      ? () => {
-          actionsCtx.run('FocusBuilding', { index }); //hud.changeCamera(pose.position, pose.lookAt, pose.animate);
-
-          // console.log(pose);
-        }
-      : null;
+    const clicked = issite ? () => actionsCtx.run('action_focus_building', { index }) : null;
     const bilboard = hasBilboard && (
       <group position={top} scale={[1, 1, 1]}>
         <Buildboard index={index} />

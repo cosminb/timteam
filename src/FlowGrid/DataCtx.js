@@ -3,8 +3,8 @@ import React from 'react';
 export const DataCtx = React.createContext({});
 
 const processor_getItemValue = function (props, resolve) {
-  resolve(this.value);
-
+  // resolve(props);
+  //return {};
   return {};
 };
 class Register {
@@ -57,7 +57,6 @@ class Register {
   }
 
   changeItem(key, newItem) {
-    // console.log('changeItem', key, newItem);
     let item = this.items[key];
 
     if (item.processor != newItem.processor) {
@@ -68,7 +67,6 @@ class Register {
 
     item.specs = newItem;
     if (item.shouldUpdate(newItem.props)) {
-      //   console.log('should update', newItem);
       item.update(newItem.props);
       item.props = Object.assign({}, newItem.props);
     }
