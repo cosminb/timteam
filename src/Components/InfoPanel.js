@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DataCtx } from '../FlowGrid/DataCtx';
 import { useSpring,useSprings, a } from 'react-spring';
 import { Charts } from './Charts';
@@ -22,6 +22,12 @@ export const InfoPanel = ({ style, isOpen }) => {
   };
 
   const [activeFloor, setActiveFloor] = React.useState(4);
+
+  useEffect(() => {
+    setActiveFloor(4);
+  }, [isOpen]);
+
+
   let [floorsData] = useSprings(
     5,
     i => {

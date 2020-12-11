@@ -125,7 +125,7 @@ export const Card5 = () => {
   return (
     <>
       <div className="card" style={{ position: 'relative', height: 250, flex: '1' }}>
-        <div style={{ position: 'relative', margin: '10px' }}>Device Status Notifications</div>
+        <div className="sectionTitle">Device Status Notifications</div>
         <div style={{ position: 'relative', margin: '10px' }}>{nodes}</div>
       </div>
     </>
