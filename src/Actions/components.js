@@ -1,9 +1,13 @@
-export const component_main_change = ({ id, style }, data) => {
+export const component_main_change = ({ id, style, props }, data) => {
   let path = 'app.subs.root.subs.' + id;
   let component = _.get(data.specTree, path);
 
   if (style) {
     component.props.style = { ...component.props.style, ...style };
+  }
+
+  if (props) {
+    component.props = { ...component.props, ...props };
   }
   // component.props = { ...component.props, props };
   //_.merge(component, { props, ...spec });

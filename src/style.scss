@@ -1,4 +1,3 @@
-
 $primary-light: #739dd3;
 $dark-one: #10171f;
 $dark-two: #19232f;
@@ -26,7 +25,6 @@ $blue-semitransparent-bg-1: rgba(91, 150, 213, 0.15);
 $blue-semitransparent-bg-2: rgba(91, 150, 213, 0.08);
 $slate: #485769;
 
-
 html,
 body,
 #root {
@@ -42,13 +40,11 @@ body,
   user-select: none;
   overflow: hidden;
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5em;
-
 }
 html,
 body,
@@ -68,7 +64,7 @@ body,
 
 * {
   box-sizing: border-box;
-  transition: all 0.3s ease-out;
+  // transition: all 0.3s ease-out;
   color: white;
 }
 
@@ -120,14 +116,13 @@ body,
   justify-self: flex-end;
   overflow: hidden;
   padding: 30px;
-  > div {
-    background-color: #00000053;
-    overflow: hidden;
-    backdrop-filter: blur(5px);
-    border: 1px solid gold;
-    height: 100%;
-    width: 100%;
-  }
+  background-color: #00000098;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  border: 1px solid gold;
+  height: 100%;
+  width: 100%;
+  color: black;
 }
 
 .iconFrame {
@@ -146,17 +141,45 @@ body,
   border: none;
 }
 
-.frame{
-  height:100%;
+.frame {
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
-button{
-
+button {
 }
 
- .card, .frame, div.infopanel{
-   border-radius: 3px ;
-   padding:5px;
-   margin-top: 10px;
- }
+.card,
+.frame,
+div.infopanel {
+  border-radius: 3px;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.floorSvg {
+  transform: rotateX(70deg) rotateY(0deg) rotateZ(30deg);
+  transform-box: fill-box;
+  transform-origin: center;
+  stroke: #999;
+}
+
+.infopanel {
+  display: grid;
+  position: relative;
+  grid-template: 'floors details' 100% / 300px 1fr;
+
+  .closeButton {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .floorsGroup {
+    grid-area: floors;
+  }
+
+  .details {
+    grid-area: details;
+  }
+}

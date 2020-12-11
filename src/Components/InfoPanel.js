@@ -1,9 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
 import { DataCtx } from '../FlowGrid/DataCtx';
 import { useSpring, a } from 'react-spring';
+import { Charts } from './Charts';
+import { FloorsGroup } from './FloorsGroup';
 
-export const InfoPanel = ({ style }) => {
+export const InfoPanel = ({ style, isOpen }) => {
   const animatedStyle = useSpring({
     ...style,
     config: {
@@ -20,10 +21,15 @@ export const InfoPanel = ({ style }) => {
 
   return (
     <a.div style={animatedStyle} className="infopanel">
-      <div>
-        INFO panel
-        <button onClick={handleClose}>Close</button>
-      </div>
+      <button onClick={handleClose} className="closeButton">
+        Close
+      </button>
+      {isOpen && (
+        <>
+          <FloorsGroup />
+          <Charts />
+        </>
+      )}
     </a.div>
   );
 };

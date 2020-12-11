@@ -3,8 +3,11 @@ export const action_focus_building = ({ index }, data) => {
 
   data.run('component_main_change', {
     id: 'infoPanel',
+    props: {
+      isOpen: true,
+    },
     style: {
-      width: '50%',
+      width: '100%',
       height: '100%',
     },
   });
@@ -16,6 +19,10 @@ export const action_overview = ({}, data) => {
   data.run('buildings_overview', {});
   data.run('component_main_change', {
     id: 'infoPanel',
+
+    props: {
+      isOpen: false,
+    },
     style: {
       width: '0%',
       height: '0%',

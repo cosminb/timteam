@@ -14,6 +14,8 @@ const useInterval = (cb, ms) => {
       cbRef.current();
     }, ms);
 
+    cbRef.current();
+
     return () => window.clearInterval(timer);
   }, [ms]);
 };
@@ -23,17 +25,19 @@ export const Card5 = () => {
 
   const height = 50;
   let notificationsArray = [
-    "Site 49: Panel P from floor F1 is now Offline", 
-    "Site 30: Panel P from floor F4 is now Online",
-    "Site 20: Door D from floor F3 is now Offline",
-    "Site 15: Door D from floor F5 is now Online",
-    "Site 73: Camera C from floor F8 is now Offline", 
-    "Site 60: Camera C from floor F2 is now Online"
+    'Site 49: Panel P from floor F1 is now Offline',
+    'Site 30: Panel P from floor F4 is now Online',
+    'Site 20: Door D from floor F3 is now Offline',
+    'Site 15: Door D from floor F5 is now Online',
+    'Site 73: Camera C from floor F8 is now Offline',
+    'Site 60: Camera C from floor F2 is now Online',
   ];
 
-
   const makeItem = () => {
-    return { key: Date.now() + Math.random(), text: notificationsArray[Math.floor(Math.random() * notificationsArray.length)]};
+    return {
+      key: Date.now() + Math.random(),
+      text: notificationsArray[Math.floor(Math.random() * notificationsArray.length)],
+    };
   };
 
   const makeItems = () => {
@@ -63,7 +67,7 @@ export const Card5 = () => {
     setItems(items.slice(0));
   };
 
-  useInterval(updateItems, 4000);
+  useInterval(updateItems, 10000);
 
   const transition = useTransition(items, {
     from: {
@@ -95,17 +99,20 @@ export const Card5 = () => {
   });
 
   let nodes = transition((style, item, t, i) => {
-    let textColor = item.text.includes("Offline") ? "red" : "white";
+    let textColor = item.text.includes('Offline') ? 'red' : 'white';
 
-    return <a.div style={{ ...style, position: 'absolute', top: 0, color: textColor }}>{item.text}</a.div>;
+    return (
+      <a.div style={{ ...style, position: 'absolute', top: 0, color: textColor }}>
+        {item.text}
+      </a.div>
+    );
   });
 
   return (
     <>
-      
-      <div className="card" style={{ position: 'relative', height: 250, flex: '1'}}>
+      <div className="card" style={{ position: 'relative', height: 250, flex: '1' }}>
         <div className="sectionTitle">Notifications</div>
-        <div style={{ position: 'relative'}}>{nodes}</div>
+        <div style={{ position: 'relative' }}>{nodes}</div>
       </div>
     </>
   );

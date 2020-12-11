@@ -20,11 +20,11 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
   const update = props => {
     guard.update({ buildings: 'buildings', colors: 'colors', buildingSizes: 'buildingSizes' });
 
-    let cellSize = 55;
+    let cellSize = 75;
     let cellSize2 = 75;
-    let rows = 10;
-    let cols = 10;
-    let blockWidth = 35;
+    let rows = 6;
+    let cols = 6;
+    let blockWidth = 45;
 
     let box = {
       sizeXHalf: (cols * cellSize) / 2 - blockWidth / 4,

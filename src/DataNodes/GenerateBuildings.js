@@ -4,10 +4,14 @@ export const GenerateBuildings = (props, resolve) => {
   let buildingGrid = GetBuildingsGrid(props);
 
   setInterval(() => {
-    let index = Math.floor(Math.random() * buildingGrid.site.length); 
-    buildingGrid.site[index].hasError = Math.random() < 0.5;
-    resolve(buildingGrid);
-  }, 3000);
+    let index = Math.floor(Math.random() * buildingGrid.site.length);
+    let hasError = Math.random() < 0.5;
+
+    if (hasError != buildingGrid.site[index].hasError) {
+      buildingGrid.site[index].hasError = hasError;
+      resolve(buildingGrid);
+    }
+  }, 5000);
 
   const update = props => resolve(buildingGrid);
 
@@ -38,7 +42,7 @@ const GetBuildingsGrid = ({ cols, rows }) => {
   };
 
   result.all.sort((a, b) => {
-    return a.index-b.index
+    return a.index - b.index;
   });
 
   result.site.forEach((item, index) => {

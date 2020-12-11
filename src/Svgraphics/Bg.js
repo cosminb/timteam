@@ -2,29 +2,29 @@ import React from 'react';
 import { animated as tanimated, useSpring as tuseSpring } from 'react-spring';
 
 export const Bg = () => {
-  const [srings2, setSprings2] = tuseSpring(() => ({
-    x: 0,
-    y: 0,
-  }));
+  // const [srings2, setSprings2] = tuseSpring(() => ({
+  //   x: 0,
+  //   y: 0,
+  // }));
 
-  React.useEffect(() => {
-    const animate = () => {
-      setSprings2({
-        onRest: animate,
-        reset: true,
+  // React.useEffect(() => {
+  //   const animate = () => {
+  //     setSprings2({
+  //       onRest: animate,
+  //       reset: true,
 
-        from: { x: 0, y: 0 },
-        to: { x: 50, y: 50 },
+  //       from: { x: 0, y: 0 },
+  //       to: { x: 50, y: 50 },
 
-        config: {
-          frequency: 40,
-          damping: 1,
-        },
-      });
-    };
+  //       config: {
+  //         frequency: 40,
+  //         damping: 1,
+  //       },
+  //     });
+  //   };
 
-    animate();
-  }, []);
+  //   animate();
+  // }, []);
 
   let style = `
   
@@ -44,6 +44,10 @@ export const Bg = () => {
     opacity : 0.2
   }
   `;
+
+  const srings2 = {
+    x: 32,
+  };
   return (
     <svg width="100%" height="100%" style={{ position: 'absolute', zIndex: -100 }}>
       <style>{style}</style>

@@ -58,8 +58,8 @@ export const specTree = {
           buildings: {
             processor: GenerateBuildings,
             props: {
-              cols: 10,
-              rows: 10,
+              cols: 6,
+              rows: 6,
             },
           },
           buildingsNodes: {
@@ -98,11 +98,7 @@ export const specTree = {
               },
             },
 
-            subs: [
-              { component: Card3,},
-
-              { component: Card5 },
-            ],
+            subs: [{ component: Card3 }, { component: Card5 }],
           },
           console: {
             component: MainBar,
@@ -121,7 +117,7 @@ export const specTree = {
                 width: '0%',
                 height: '0%',
               },
-              //selectedSite: 
+              //selectedSite:
             },
           },
         },

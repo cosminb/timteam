@@ -19,7 +19,8 @@ export const SpaceCanvas = ({ children }) => {
       onCreated={({ gl }) => {
         gl.setClearColor(new THREE.Color('#020207'), 0.1);
       }}
-      shadowMap={{ enabled: true, type: THREE.PCFSoftShadowMap }}>
+      shadowMap={{ enabled: true, type: THREE.PCFSoftShadowMap }}
+      invalidateFrameloop>
       <ContextBridge>
         <pointLight
           distance={100}

@@ -6,16 +6,16 @@ import { GetColor } from '../../index';
 import { _ } from '../../jams/common';
 
 export const Card3 = () => {
-  const [data] = useData({ buildings: 'buildings', camera: 'camera', testData: 'testData' });
+  const [data] = useData({ buildings: 'buildings' });
   const _ = require('lodash');
 
-  const rows = 10;
-  const cols = 10;
+  const rows = 6;
+  const cols = 6;
 
-  let cellSize = 30;
-  let blockSize = 20;
+  let cellSize = 40;
+  let blockSize = 35;
 
-  const [springs, set, stop] = useSprings(100, index => ({}));
+  const [springs, set, stop] = useSprings(rows * cols, index => ({}));
 
   React.useEffect(() => {
     if (!_.isEmpty(data)) {
@@ -47,9 +47,9 @@ export const Card3 = () => {
     return colorItem;
   };
 
-  let nodes = _.times(100, i => {
-    let y = Math.floor(i / 10) * cellSize;
-    let x = (i % 10) * cellSize;
+  let nodes = _.times(rows * cols, i => {
+    let y = Math.floor(i / cols) * cellSize;
+    let x = (i % cols) * cellSize;
     let isSite = false;
     if (!_.isEmpty(data)) {
       isSite = data.buildings.all[i].issite;
