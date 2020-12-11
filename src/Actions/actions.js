@@ -59,7 +59,9 @@ export const command_run = ({ command }, data) => {
     {
       commandHead: 'show site',
       action: (tokens, data) => {
-        data.run('action_focus_building_name', { index: parseInt(tokens[2]) });
+        let number = command.match(/\d+/)[0];
+
+        data.run('action_focus_building_name', { index: number });
       },
     },
 
@@ -79,7 +81,8 @@ export const command_run = ({ command }, data) => {
     }
   }
 
-  if (command.indexOf('show') || command.indexOf('site') || command.match(/[\d]+/)) {
-    data.run('action_focus_building_name', { index: parseInt(tokens[2]) });
+  if (command.indexOf('show') != -1 || command.indexOf('site') != -1 || command.match(/\d+/)) {
+    let number = command.match(/\d+/)[0];
+    data.run('action_focus_building_name', { index: parseInt(number) });
   }
 };
