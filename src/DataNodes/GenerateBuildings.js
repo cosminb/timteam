@@ -48,8 +48,9 @@ const GetBuildingsGrid = ({ cols, rows }) => {
   result.site.forEach((item, index) => {
     item.issite = true;
     item.siteIndex = index;
-    item.hasError = Math.random() < 0.5;
   });
+
+  result.site[0].hasError = true;
 
   return result;
 };

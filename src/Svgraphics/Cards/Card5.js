@@ -25,12 +25,26 @@ export const Card5 = () => {
 
   const height = 50;
   let notificationsArray = [
-    'Site 49: Panel P from floor F1 is now Offline',
-    'Site 30: Panel P from floor F4 is now Online',
-    'Site 20: Door D from floor F3 is now Offline',
-    'Site 15: Door D from floor F5 is now Online',
-    'Site 73: Camera C from floor F8 is now Offline',
-    'Site 60: Camera C from floor F2 is now Online',
+    'Site 49: Panel P1 from floor F1 is now Offline',
+    'Site 30: Panel P2 from floor F4 is now Online',
+
+    'Site 20: Door D1 from floor F3 is now Offline',
+    'Site 15: Door D2 from floor F5 is now Online',
+
+    'Site 25: Door D3 from floor F3 has status: Held open too long',
+    'Site 27: Door D4 from floor F7 has status: Lock Offline',
+    'Site 39: Door D4 from floor F3 has status: Door Wiring Shorted',
+    'Site 5: Door D4 from floor F9 has status: Door Wiring Cut',
+    'Site 17: Door D4 from floor F1 has status: Scheduled Unlock',
+    'Site 20: Door D4 from floor F2 has status: Scheduled Unlock',
+
+    'Site 30: Panel P3 from floor F4 has status: Battery Level Unknown',
+    'Site 30: Panel P4 from floor F4 has status: Battery Level Very Low',
+    'Site 30: Panel P5 from floor F6 has status: Battery Level Low',
+    'Site 15: Panel P6 from floor F5 has status: Low Battery',
+
+    'Site 73: Camera C1 from floor F8 is now Offline',
+    'Site 60: Camera C2 from floor F2 is now Online',
   ];
 
   const makeItem = () => {
@@ -99,10 +113,10 @@ export const Card5 = () => {
   });
 
   let nodes = transition((style, item, t, i) => {
-    let textColor = item.text.includes('Offline') ? 'red' : 'white';
+    let textColor = item.text.includes('status') ? 'red' : 'white';
 
     return (
-      <a.div style={{ ...style, position: 'absolute', top: 0, color: textColor }}>
+      <a.div style={{ ...style, position: 'absolute', top: 0, color: textColor, margin: '10px'}}>
         {item.text}
       </a.div>
     );
@@ -111,8 +125,8 @@ export const Card5 = () => {
   return (
     <>
       <div className="card" style={{ position: 'relative', height: 250, flex: '1' }}>
-        <div className="sectionTitle">Notifications</div>
-        <div style={{ position: 'relative' }}>{nodes}</div>
+        <div style={{ position: 'relative', margin: '10px' }}>Device Status Notifications</div>
+        <div style={{ position: 'relative', margin: '10px' }}>{nodes}</div>
       </div>
     </>
   );
