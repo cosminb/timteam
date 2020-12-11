@@ -92,11 +92,12 @@ export const InfoPanel = ({ style, isOpen }) => {
 
   return (
     <a.div style={animatedStyle} className="infopanel">
-      <button onClick={handleClose} className="closeButton">
-        Close
-      </button>
+
       {isOpen && (
         <>
+          <button onClick={handleClose} className="closeButton">
+            Close
+          </button>
           <FloorsGroup
             activeFloor={activeFloor}
             setActiveFloor={setActiveFloor}
