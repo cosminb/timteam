@@ -56,6 +56,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
 
     hardcodedDetails.map(floor => {
       if(activeFloor === floor.id) {
+        floorName = floor.floorName;
         currentCameras = floor.cameras;
         currentDoors = floor.doors;
         currentPanels = floor.panels;
@@ -65,6 +66,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
 
   return (
     <div style={{ marginTop: '50px' }}>
+      <div>{floorName}</div>
       <div className="root" style={{ margin: '50px' }}>
         <ExpansionPanel expanded={true}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
