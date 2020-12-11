@@ -69,12 +69,12 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
       <div>{floorName}</div>
       <div className="root" style={{ margin: '50px' }}>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#5F5E6F'}}>
             <Typography className="heading">Panels</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails style={{ backgroundColor: '#5F5E6F'}}>
             {currentPanels.map(panel => (
-            <Card className="root">
+            <Card className="root"  style={{ margin: '10px' }}>
                 <CardContent>
                   <Typography  color="textSecondary" gutterBottom>
                     {panel}
@@ -85,12 +85,12 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#5F5E6F'}}>
             <Typography className="heading">Doors</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails style={{ backgroundColor: '#5F5E6F'}}>
             {currentDoors.map(door => (
-            <Card className="root">
+            <Card className="root" style={{ margin: '10px' }}>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
                     {door}
@@ -101,12 +101,12 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#5F5E6F'}}>
             <Typography className="heading">Cameras</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails style={{ backgroundColor: '#5F5E6F'}}>
             {currentCameras.map(camera => (
-            <Card className="root">
+            <Card className="root" style={{ margin: '10px' }}>
                 <CardContent>
                   <Typography  color="textSecondary" gutterBottom>
                     {camera}
