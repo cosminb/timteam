@@ -89,7 +89,16 @@ const BarChartHoriz = () => {
   return input;
 };
 const ChartPath = ({ style }) => {
-  return <a.path d={style.d} style={style} fill="none" />;
+  return (
+    <>
+      <linearGradient id="myGradient" gradientUnits="userSpaceOnUse" gradientTransform="rotate(90)">
+        <stop offset="5%" stopColor="red" />
+        <stop offset="90%" stopColor="red" stopOpacity="0" />
+      </linearGradient>
+
+      <a.path d={style.d} style={style} fill="url(#myGradient)" />
+    </>
+  );
 };
 const PathChart = () => {
   let size = 30;
@@ -102,16 +111,22 @@ const PathChart = () => {
     return Math.random() * maxValue;
   });
 
+  let min = _.min(items);
+  items[0] = 0;
+
+  let max = _.max(items);
+  items[items.length - 1] = 0;
+
   let pathD = _.map(
     items,
     (y, i) => (i == 0 ? 'M ' : 'L ') + i * size + ' ' + (chartHeight - y)
   ).join(' ');
 
+  //   pathD = 'M 0 400 ' + pathD + ' M 300 400';
+
   let startD = _.map(items, (y, i) => (i == 0 ? 'M ' : 'L ') + i * size + ' ' + chartHeight).join(
     ' '
   );
-
-  console.log(pathD, startD);
 
   let input = [
     {
