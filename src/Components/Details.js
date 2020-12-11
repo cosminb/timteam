@@ -19,40 +19,46 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
       doors: ['Door1', 'Door2', 'Door3'],
       panels: ['Panel1', 'Panel2', 'Panel3'],
       cameras: ['Camera1', 'Camera2', 'Camera3'],
+      hasError: "",
     },
     {
       id: 3,
       floorName: 'First Floor',
-      doors: ['Door11', 'Door12', 'Door13'],
-      panels: ['Panel11', 'Panel12', 'Panel13'],
-      cameras: ['Camera11', 'Camera12', 'Camera13'],
+      doors: ['Door 11', 'Door 12', 'Door 13'],
+      panels: ['Panel 11', 'Panel 12', 'Panel 13'],
+      cameras: ['Camera 11', 'Camera 12', 'Camera 13'],
+      hasError: "Panel 12 from floor F4 has status: Battery Level Very Low",
     },
     {
       id: 2,
       floorName: 'Second Floor',
-      doors: ['Door21', 'Door22', 'Door23'],
-      panels: ['Panel21', 'Panel22', 'Panel23'],
-      cameras: ['Camera21', 'Camera22', 'Camera23'],
+      doors: ['Door 21', 'Door 22', 'Door 23'],
+      panels: ['Panel 21', 'Panel 22', 'Panel 23'],
+      cameras: ['Camera 21', 'Camera 22', 'Camera 23'],
+      hasError: "",
     },
     {
       id: 1,
       floorName: 'Third Floor',
-      doors: ['Door31', 'Door32', 'Door33'],
-      panels: ['Panel31', 'Panel32', 'Panel33'],
-      cameras: ['Camera31', 'Camera32', 'Camera33'],
+      doors: ['Door 31', 'Door 32', 'Door 33'],
+      panels: ['Panel 31', 'Panel 32', 'Panel 33'],
+      cameras: ['Camera 31', 'Camera 32', 'Camera 33'],
+      hasError: "Door 33 from floor F3 has status: Held open too long"
     },
     {
       id: 0,
       floorName: 'Fourth Floor',
-      doors: ['Door41', 'Door42', 'Door43'],
-      panels: ['Panel41', 'Panel42', 'Panel43'],
-      cameras: ['Camera41', 'Camera42', 'Camera43'],
+      doors: ['Door 41', 'Door 42', 'Door 43'],
+      panels: ['Panel 41', 'Panel 42', 'Panel 43'],
+      cameras: ['Camera 41', 'Camera 42', 'Camera 43'],
+      hasError: "",
     },
   ];
 
   let currentCameras = [];
   let currentDoors = [];
   let currentPanels = [];
+  let currentError = "";
 
     hardcodedDetails.map(floor => {
       if(activeFloor === floor.id) {
@@ -60,7 +66,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
         currentCameras = floor.cameras;
         currentDoors = floor.doors;
         currentPanels = floor.panels;
-        console.log("currentCameras ", currentCameras);
+        currentError = floor.hasError;
       }
     });
 
@@ -79,6 +85,9 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
                   <Typography  color="textSecondary" gutterBottom>
                     {panel}
                   </Typography>
+                  <Typography  color="textSecondary" gutterBottom>
+                    {currentError.includes(panel) ? currentError : null }
+                  </Typography>
                 </CardContent>
               </Card>))
             }
@@ -95,6 +104,9 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
                   <Typography color="textSecondary" gutterBottom>
                     {door}
                   </Typography>
+                  <Typography color="textSecondary" gutterBottom>
+                    {currentError.includes(door) ? currentError : null }
+                  </Typography>
                 </CardContent>
               </Card>))
             }
@@ -110,6 +122,9 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
                 <CardContent>
                   <Typography  color="textSecondary" gutterBottom>
                     {camera}
+                  </Typography>
+                  <Typography color="textSecondary" gutterBottom>
+                    {currentError.includes(camera) ? currentError : null }
                   </Typography>
                 </CardContent>
               </Card>))
