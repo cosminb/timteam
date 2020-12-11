@@ -116,7 +116,7 @@ export const Card5 = () => {
     let textColor = item.text.includes('status') ? 'red' : 'white';
 
     return (
-      <a.div style={{ ...style, position: 'absolute', top: 0, color: textColor, margin: '10px'}}>
+      <a.div style={{ ...style, position: 'relative', top: 0, color: textColor, margin: '0px'}}>
         {item.text}
       </a.div>
     );

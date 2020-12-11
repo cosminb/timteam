@@ -69,10 +69,10 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
       <div>{floorName}</div>
       <div className="root" style={{ margin: '50px' }}>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#5F5E6F'}}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#154360'}}>
             <Typography className="heading">Panels</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails style={{ backgroundColor: '#5F5E6F'}}>
+          <ExpansionPanelDetails style={{ backgroundColor: '#154360'}}>
             {currentPanels.map(panel => (
             <Card className="root"  style={{ margin: '10px' }}>
                 <CardContent>
@@ -85,10 +85,10 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#5F5E6F'}}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#154360'}}>
             <Typography className="heading">Doors</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails style={{ backgroundColor: '#5F5E6F'}}>
+          <ExpansionPanelDetails style={{ backgroundColor: '#154360'}}>
             {currentDoors.map(door => (
             <Card className="root" style={{ margin: '10px' }}>
                 <CardContent>
@@ -101,10 +101,10 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#5F5E6F'}}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#154360'}}>
             <Typography className="heading">Cameras</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails style={{ backgroundColor: '#5F5E6F'}}>
+          <ExpansionPanelDetails style={{ backgroundColor: '#154360'}}>
             {currentCameras.map(camera => (
             <Card className="root" style={{ margin: '10px' }}>
                 <CardContent>
