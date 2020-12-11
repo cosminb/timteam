@@ -15,6 +15,23 @@ export const action_focus_building = ({ index }, data) => {
   data.updateApp();
 };
 
+export const action_focus_building_name = ({ index }, data) => {
+  data.run('building_focus_name', { index });
+
+  data.run('component_main_change', {
+    id: 'infoPanel',
+    props: {
+      isOpen: true,
+    },
+    style: {
+      width: '100%',
+      height: '100%',
+    },
+  });
+
+  data.updateApp();
+};
+
 export const action_overview = ({}, data) => {
   data.run('buildings_overview', {});
   data.run('component_main_change', {
@@ -42,7 +59,7 @@ export const command_run = ({ command }, data) => {
     {
       commandHead: 'show site',
       action: (tokens, data) => {
-        data.run('action_focus_building', { index: parseInt(tokens[2]) });
+        data.run('action_focus_building_name', { index: parseInt(tokens[2]) });
       },
     },
 
@@ -60,5 +77,9 @@ export const command_run = ({ command }, data) => {
       commandTpl.action(tokens, data);
       return;
     }
+  }
+
+  if (command.indexOf('show') || command.indexOf('site') || command.match(/[\d]+/)) {
+    data.run('action_focus_building_name', { index: parseInt(tokens[2]) });
   }
 };

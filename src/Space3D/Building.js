@@ -9,7 +9,7 @@ var BuildingGeometry = new THREE.BoxGeometry(1, 1, 1); // create once and reuse
 BuildingGeometry.translate(0.5, 0.5, 0.5);
 
 export const Building = React.memo(
-  ({ position, scale, color, opacity, top, hasBilboard, pose, index, issite }) => {
+  ({ position, scale, color, opacity, top, hasBilboard, pose, index, issite, name }) => {
     const spring = useSpring({
       scale,
       position,
@@ -27,7 +27,7 @@ export const Building = React.memo(
     const clicked = issite ? () => actionsCtx.run('action_focus_building', { index }) : null;
     const bilboard = hasBilboard && (
       <group position={top} scale={[1, 1, 1]}>
-        <Buildboard index={index} />
+        <Buildboard index={name} />
       </group>
     );
     return (
