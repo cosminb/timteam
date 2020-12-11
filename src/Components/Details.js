@@ -26,7 +26,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
       doors: ['Door 11', 'Door 12', 'Door 13'],
       panels: ['Panel 11', 'Panel 12', 'Panel 13'],
       cameras: ['Camera 11', 'Camera 12', 'Camera 13'],
-      hasError: "Panel 12 from floor F4 has status: Battery Level Very Low",
+      hasError: "Panel 12: Battery Level Very Low",
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
       doors: ['Door 31', 'Door 32', 'Door 33'],
       panels: ['Panel 31', 'Panel 32', 'Panel 33'],
       cameras: ['Camera 31', 'Camera 32', 'Camera 33'],
-      hasError: "Door 33 from floor F3 has status: Held open too long"
+      hasError: "Door 33: Held open too long"
     },
     {
       id: 0,
@@ -86,7 +86,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
                   <Typography gutterBottom className="deviceButton">
                     {panel}
                   </Typography>
-                  <Typography  color="textSecondary" gutterBottom>
+                  <Typography  style={{ color: "red" }} gutterBottom>
                     {currentError.includes(panel) ? currentError : null }
                   </Typography>
                 </CardContent>
@@ -107,7 +107,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
                   <Typography className="deviceButton" gutterBottom>
                     {door}
                   </Typography>
-                  <Typography color="textSecondary" gutterBottom>
+                  <Typography style={{ color: "red" }} gutterBottom>
                     {currentError.includes(door) ? currentError : null }
                   </Typography>
                 </CardContent>
@@ -128,7 +128,7 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
                   <Typography className="deviceButton" gutterBottom>
                     {camera}
                   </Typography>
-                  <Typography color="textSecondary" gutterBottom>
+                  <Typography style={{ color: "red" }} gutterBottom>
                     {currentError.includes(camera) ? currentError : null }
                   </Typography>
                 </CardContent>
