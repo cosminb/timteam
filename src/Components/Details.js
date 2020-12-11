@@ -11,7 +11,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
 export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
-
   let hardcodedDetails = [
     {
       id: 4,
@@ -60,75 +59,81 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
   let currentPanels = [];
   let currentError = "";
 
-    hardcodedDetails.map(floor => {
-      if(activeFloor === floor.id) {
-        floorName = floor.floorName;
-        currentCameras = floor.cameras;
-        currentDoors = floor.doors;
-        currentPanels = floor.panels;
-        currentError = floor.hasError;
-      }
-    });
+  hardcodedDetails.map(floor => {
+    if(activeFloor === floor.id) {
+      floorName = floor.floorName;
+      currentCameras = floor.cameras;
+      currentDoors = floor.doors;
+      currentPanels = floor.panels;
+      currentError = floor.hasError;
+    }
+  });
 
   return (
-    <div style={{ marginTop: '50px' }}>
+    <div style={{ marginTop: '50px', height: '100%', overflow: 'auto' }} className="devicep">
       <div>{floorName}</div>
-      <div className="root" style={{ margin: '50px' }}>
+      <div className="root" style={{ margin: '50px', overflow: 'auto' }}>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#154360'}}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            style={{ backgroundColor: '#15436075' }}>
             <Typography className="heading">Panels</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails style={{ backgroundColor: '#154360'}}>
+          <ExpansionPanelDetails style={{ backgroundColor: '#15436075' }}>
             {currentPanels.map(panel => (
-            <Card className="root"  style={{ margin: '10px' }}>
+              <Card className="root" style={{ margin: '10px', border: '1px solid #007abc75' }}>
                 <CardContent>
-                  <Typography  color="textSecondary" gutterBottom>
+                  <Typography gutterBottom className="deviceButton">
                     {panel}
                   </Typography>
                   <Typography  color="textSecondary" gutterBottom>
                     {currentError.includes(panel) ? currentError : null }
                   </Typography>
                 </CardContent>
-              </Card>))
-            }
+              </Card>
+            ))}
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#154360'}}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            style={{ backgroundColor: '#15436075' }}>
             <Typography className="heading">Doors</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails style={{ backgroundColor: '#154360'}}>
+          <ExpansionPanelDetails style={{ backgroundColor: '#15436075' }}>
             {currentDoors.map(door => (
-            <Card className="root" style={{ margin: '10px' }}>
+              <Card className="root" style={{ margin: '10px', border: '1px solid #007abc75' }}>
                 <CardContent>
-                  <Typography color="textSecondary" gutterBottom>
+                  <Typography className="deviceButton" gutterBottom>
                     {door}
                   </Typography>
                   <Typography color="textSecondary" gutterBottom>
                     {currentError.includes(door) ? currentError : null }
                   </Typography>
                 </CardContent>
-              </Card>))
-            }
+              </Card>
+            ))}
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel expanded={true}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ backgroundColor: '#154360'}}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            style={{ backgroundColor: '#15436075' }}>
             <Typography className="heading">Cameras</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails style={{ backgroundColor: '#154360'}}>
+          <ExpansionPanelDetails style={{ backgroundColor: '#15436075' }}>
             {currentCameras.map(camera => (
-            <Card className="root" style={{ margin: '10px' }}>
+              <Card className="root" style={{ margin: '10px', border: '1px solid #007abc75' }}>
                 <CardContent>
-                  <Typography  color="textSecondary" gutterBottom>
+                  <Typography className="deviceButton" gutterBottom>
                     {camera}
                   </Typography>
                   <Typography color="textSecondary" gutterBottom>
                     {currentError.includes(camera) ? currentError : null }
                   </Typography>
                 </CardContent>
-              </Card>))
-            }
+              </Card>
+            ))}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
