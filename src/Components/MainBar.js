@@ -114,6 +114,10 @@ const MainBarSign = () => {
         command = command.toLowerCase();
 
         setOutput(v => {
+          if (command.indexOf('good') != -1 || command.indexOf('project') != -1) {
+            command = 'goodWork';
+          }
+
           v.push({ command, date: Date.now() });
 
           if (v.length > 4) v = v.slice(v.length - 4, v.length);
@@ -150,11 +154,25 @@ const MainBarSign = () => {
   };
 
   console.log(output);
-  const outputnodes = _.map(output, i => (
-    <div>
-      [{i.date}] {i.command}
-    </div>
-  ));
+  const outputnodes = _.map(output, i => {
+    if (i.command === 'goodWork') {
+      return (
+        <div>
+          It is an awesome project. Developed by Team
+          <sup className="super">
+            Tim<sup className="super">TM</sup>
+          </sup>{' '}
+          (Daniela, Lavinia & Cosmin ) for <span className="sf"> Brivo SF 2020</span>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        [{i.date}] {i.command}
+      </div>
+    );
+  });
 
   return (
     <div className="mainBar" onClick={click}>

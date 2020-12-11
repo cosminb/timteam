@@ -60,7 +60,7 @@ body,
   -ms-user-select: none;
   user-select: none;
   overflow: hidden;
-  color:#7d8fa3;
+  color: #7d8fa3;
   //background-color: #10171f;
 }
 
@@ -79,7 +79,6 @@ body,
   pointer-events: none;
   //font-variant: small-caps;
   width: 400px;
-
 }
 
 .card {
@@ -149,9 +148,10 @@ body,
   width: 100%;
   overflow: hidden;
 }
-.closeButton, button {
+.closeButton,
+button {
   background-color: #8dbfff;
-  color:#ffffff;
+  color: #ffffff;
   border-radius: 2px;
   padding: 5px;
   border: none;
@@ -164,7 +164,6 @@ body,
 div.infopanel {
   border-radius: 3px;
   padding: 10px;
-
 }
 
 .floorSvg {
@@ -194,12 +193,12 @@ div.infopanel {
   }
 }
 
-.sectionTitle{
+.sectionTitle {
   //border: solid 1px red;
   border-bottom: solid 1px #007abc65;
   margin-bottom: 20px;
 }
-.main_panel{
+.main_panel {
   /*borderRadius: 10,
   height: '100%',
   width: '100%',
@@ -208,4 +207,12 @@ div.infopanel {
   margin: 0,
 
    */
+}
+
+.super {
+}
+
+.sf {
+  color: #007abc;
+  font-size: 1.2em;
 }
