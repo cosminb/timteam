@@ -8,8 +8,6 @@ export const MainBar = ({ style }) => {
   return (
     <div style={style} className="card">
       <MainBarSign />
-
-      <input />
     </div>
   );
 };
@@ -92,9 +90,11 @@ const MainBarSign = () => {
 
   const speechRef = React.useRef();
   const [transcript, setTranscript] = React.useState({
-    final_transcript: '>',
-    interim_transcript: 'click and say something',
+    final_transcript: '',
+    interim_transcript: '...',
   });
+
+  const [output, setOutput] = React.useState([]);
 
   React.useEffect(() => {
     speechRef.current = VoiceCommands.setup(
@@ -112,6 +112,14 @@ const MainBarSign = () => {
       },
       command => {
         command = command.toLowerCase();
+
+        setOutput(v => {
+          v.push({ command, date: Date.now() });
+
+          if (v.length > 4) v = v.slice(v.length - 4, v.length);
+
+          return v.slice(0);
+        });
 
         actionsCtx.run('command_run', { command });
 
@@ -140,14 +148,23 @@ const MainBarSign = () => {
       setState(false);
     }
   };
+
+  console.log(output);
+  const outputnodes = _.map(output, i => (
+    <div>
+      [{i.date}] {i.command}
+    </div>
+  ));
+
   return (
     <div className="mainBar" onClick={click}>
       <svg width="100px" height="100%">
         <g style={{ translate: '25px 25px' }}>{nodes}</g>
       </svg>
 
-      <div style={{ gridArea: 'output' }}></div>
+      <div style={{ gridArea: 'output' }}> {outputnodes} </div>
       <div style={{ gridArea: 'input', fontSize: 40 }}>
+        <Microphone state={state} />
         <span style={{ color: 'white' }} onChange={handleChange} className="maininputinput">
           {transcript.final_transcript}
         </span>{' '}
@@ -157,6 +174,43 @@ const MainBarSign = () => {
   );
 };
 
+const Microphone = ({ state }) => {
+  if (!state) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 140.138 134.138">
+        <g id="no_microphone_blue" transform="translate(-249.431 -292.431)">
+          <path
+            id="microphone_blue"
+            d="M43.151,86.3A23.536,23.536,0,0,0,66.687,62.764V23.537a23.537,23.537,0,1,0-47.073,0V62.764A23.536,23.536,0,0,0,43.151,86.3ZM82.378,47.073H78.456A3.922,3.922,0,0,0,74.533,51V62.764a31.418,31.418,0,0,1-34.518,31.23C23.711,92.4,11.768,77.747,11.768,61.367V51a3.922,3.922,0,0,0-3.923-3.923H3.923A3.922,3.922,0,0,0,0,51v9.846c0,21.977,15.684,41.569,37.266,44.546v8.373H23.537a3.922,3.922,0,0,0-3.923,3.923v3.923a3.922,3.922,0,0,0,3.923,3.923H62.764a3.922,3.922,0,0,0,3.923-3.923v-3.923a3.922,3.922,0,0,0-3.923-3.923H49.035v-8.28A43.192,43.192,0,0,0,86.3,62.764V51A3.922,3.922,0,0,0,82.378,47.073Z"
+            transform="translate(276 299)"
+            fill="#739dd3"
+          />
+          <line
+            id="Line_1"
+            data-name="Line 1"
+            y1="120"
+            x2="126"
+            transform="translate(256.5 299.5)"
+            fill="none"
+            stroke="#739dd3"
+            stroke-linecap="round"
+            stroke-width="10"
+          />
+        </g>
+      </svg>
+    );
+  } else {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 86.301 125.529">
+        <path
+          id="microphone_white"
+          d="M43.151,86.3A23.536,23.536,0,0,0,66.687,62.764V23.537a23.537,23.537,0,1,0-47.073,0V62.764A23.536,23.536,0,0,0,43.151,86.3ZM82.378,47.073H78.456A3.922,3.922,0,0,0,74.533,51V62.764a31.418,31.418,0,0,1-34.518,31.23C23.711,92.4,11.768,77.747,11.768,61.367V51a3.922,3.922,0,0,0-3.923-3.923H3.923A3.922,3.922,0,0,0,0,51v9.846c0,21.977,15.684,41.569,37.266,44.546v8.373H23.537a3.922,3.922,0,0,0-3.923,3.923v3.923a3.922,3.922,0,0,0,3.923,3.923H62.764a3.922,3.922,0,0,0,3.923-3.923v-3.923a3.922,3.922,0,0,0-3.923-3.923H49.035v-8.28A43.192,43.192,0,0,0,86.3,62.764V51A3.922,3.922,0,0,0,82.378,47.073Z"
+          fill="#fff"
+        />
+      </svg>
+    );
+  }
+};
 const VoiceCommands = {
   setup: function (updateTranscript, updateState, runCommand) {
     this.updateTranscript = updateTranscript;
@@ -249,7 +303,7 @@ const VoiceCommands = {
   },
 
   executeCommands: function () {
-    // this.recognition.stop();
+    this.recognition.stop();
     this.stopTimer();
     this.updateState(false);
 

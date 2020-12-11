@@ -87,6 +87,7 @@ export const ProcessBuildings = (props, resolve, dataLayer) => {
           height,
           // pose: pose,
           issite: building.issite,
+          name: building.name,
         },
       };
     });
