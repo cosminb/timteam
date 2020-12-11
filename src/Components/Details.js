@@ -14,14 +14,14 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
 
   let hardcodedDetails = [
     {
-      id: 0,
+      id: 4,
       floorName: 'Ground Floor',
       doors: ['Door1', 'Door2', 'Door3'],
       panels: ['Panel1', 'Panel2', 'Panel3'],
       cameras: ['Camera1', 'Camera2', 'Camera3'],
     },
     {
-      id: 1,
+      id: 3,
       floorName: 'First Floor',
       doors: ['Door11', 'Door12', 'Door13'],
       panels: ['Panel11', 'Panel12', 'Panel13'],
@@ -35,18 +35,18 @@ export const Details = ({ activeFloor, setActiveFloor, floorName }) => {
       cameras: ['Camera21', 'Camera22', 'Camera23'],
     },
     {
-      id: 3,
+      id: 1,
       floorName: 'Third Floor',
       doors: ['Door31', 'Door32', 'Door33'],
       panels: ['Panel31', 'Panel32', 'Panel33'],
       cameras: ['Camera31', 'Camera32', 'Camera33'],
     },
     {
-      id: 4,
+      id: 0,
       floorName: 'Fourth Floor',
       doors: ['Door41', 'Door42', 'Door43'],
-      panels: ['Panel31', 'Panel32', 'Panel33'],
-      cameras: ['Camera31', 'Camera32', 'Camera33'],
+      panels: ['Panel41', 'Panel42', 'Panel43'],
+      cameras: ['Camera41', 'Camera42', 'Camera43'],
     },
   ];
 
