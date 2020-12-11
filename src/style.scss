@@ -146,7 +146,14 @@ body,
   width: 100%;
   overflow: hidden;
 }
-button {
+.closeButton, button {
+  background-color: #8dbfff;
+  color:#ffffff;
+  border-radius: 2px;
+  padding: 5px;
+  border: none;
+  margin-right: 5px;
+  text-transform: uppercase;
 }
 
 .card,
@@ -154,7 +161,7 @@ button {
 div.infopanel {
   border-radius: 3px;
   padding: 5px;
-  margin-top: 10px;
+
 }
 
 .floorSvg {
