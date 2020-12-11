@@ -5,10 +5,10 @@ export const BuildingIcon = () => {
 
 
   return (
-    <svg width="20" height="20" className="iconFrame" viewBox="0 0 155 39">
+    <svg width="30" height="20" className="iconFrame" viewBox="0 0 200 20">
 
         <g id="Group_4" data-name="Group 4" >
-            <rect id="Rectangle_1" data-name="Rectangle 1" width="150" height="88" transform="translate(21 -47)" fill="#fff"/>
+            <rect id="Rectangle_1" data-name="Rectangle 1"   fill="#fff" />
             <g id="Group_3" data-name="Group 3">
                 <g id="Group_1" data-name="Group 1" transform="translate(80 -40)">
                     <path id="Path_1" data-name="Path 1" d="M38.51,19.5A19.416,19.416,0,0,1,19.255,39a19.5,19.5,0,0,1,0-39A19.416,19.416,0,0,1,38.509,19.5m-34.243,0A15.039,15.039,0,0,0,19.2,34.62a15.121,15.121,0,0,0,0-30.24A15.039,15.039,0,0,0,4.265,19.5" transform="translate(0.178)" fill="#739dd3"/>

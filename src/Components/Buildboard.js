@@ -6,9 +6,9 @@ import { BuildingIcon } from '../Icons/BuildingIcon';
 export const Buildboard = ({ index }) => {
   return (
     <Html scaleFactor={300} center={true}>
-      <div className="salutare">
+      <div className="building_name">
         <BuildingIcon />
-        SITE {index}
+        Site {index}
       </div>
     </Html>
   );

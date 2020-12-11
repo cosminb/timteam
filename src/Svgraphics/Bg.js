@@ -30,13 +30,13 @@ export const Bg = () => {
   
   .line1 { 
     stroke : #007abc;
-    opacity : 0.4;
+    opacity : 0.2;
     stroke-dasharray : 1 1;
   }
 
   .line2 { 
-    stroke :#007abc;
-    opacity : 0.2
+    stroke :#5b96d5;
+    opacity : 0.1
   }
 
   .line3 { 

@@ -71,18 +71,12 @@ export const Hud = React.memo(({ style }) => {
   window.actions = actions;
 
   return (
-    <div
+    <div className="main_panel"
       style={{
-        borderRadius: 10,
-        height: '100%',
-        width: '100%',
-        overflow: 'hidden',
-        padding: 0,
-        margin: 0,
         ...style,
       }}
       className="frame">
-      <p style={{ position: 'absolute' }}>Brivo Site 3D Viewer</p>
+      <div className="sectionTitle">Brivo Site 3D Viewer</div>
       <SpaceCanvas>
         <Ground
           box={{

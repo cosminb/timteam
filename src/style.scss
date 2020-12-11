@@ -60,6 +60,8 @@ body,
   -ms-user-select: none;
   user-select: none;
   overflow: hidden;
+  color:#7d8fa3;
+  //background-color: #10171f;
 }
 
 * {
@@ -68,15 +70,16 @@ body,
   color: white;
 }
 
-.salutare {
+.building_name {
   position: absolute;
   bottom: 0px;
   left: 0px;
   padding-bottom: 10px;
   border-left: 1px solid;
   pointer-events: none;
-  font-variant: small-caps;
+  //font-variant: small-caps;
   width: 400px;
+
 }
 
 .card {
@@ -160,7 +163,7 @@ body,
 .frame,
 div.infopanel {
   border-radius: 3px;
-  padding: 5px;
+  padding: 10px;
 
 }
 
@@ -178,8 +181,8 @@ div.infopanel {
 
   .closeButton {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 10px;
+    top: 10px;
   }
 
   .floorsGroup {
@@ -189,4 +192,20 @@ div.infopanel {
   .details {
     grid-area: details;
   }
+}
+
+.sectionTitle{
+  //border: solid 1px red;
+  border-bottom: solid 1px #007abc65;
+  margin-bottom: 20px;
+}
+.main_panel{
+  /*borderRadius: 10,
+  height: '100%',
+  width: '100%',
+  overflow: 'hidden',
+  padding: 0,
+  margin: 0,
+
+   */
 }
