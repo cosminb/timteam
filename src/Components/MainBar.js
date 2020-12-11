@@ -94,7 +94,14 @@ const MainBarSign = () => {
     interim_transcript: '...',
   });
 
-  const [output, setOutput] = React.useState([]);
+  const [output, setOutput] = React.useState([
+    { date: Date.now(), command: 'Welcome' },
+    {
+      date: Date.now(),
+      command:
+        "You can use voice commands like 'Show me building 174', 'zoom out' or 'is it a good project'",
+    },
+  ]);
 
   React.useEffect(() => {
     speechRef.current = VoiceCommands.setup(
