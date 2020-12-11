@@ -216,3 +216,15 @@ div.infopanel {
   color: #007abc;
   font-size: 1.2em;
 }
+
+.MuiPaper-root {
+  background-color: transparent !important;
+}
+
+.deviceButton {
+  color: white;
+}
+
+.devicep {
+  height: calc(100%-50px);
+}
