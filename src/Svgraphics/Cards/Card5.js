@@ -2,7 +2,6 @@ import React from 'react';
 import {} from 'react-spring';
 import { animated, useSprings, useTransition, a } from 'react-spring';
 import { _ } from '../../jams/common';
-import faker from 'faker';
 
 const useInterval = (cb, ms) => {
   let cbRef = React.useRef(cb);
@@ -116,7 +115,7 @@ export const Card5 = () => {
     let textColor = item.text.includes('status') ? 'red' : 'white';
 
     return (
-      <a.div style={{ ...style, position: 'relative', top: 0, color: textColor, margin: '0px'}}>
+      <a.div style={{ ...style, position: 'relative', top: 0, color: textColor, margin: '0px' }}>
         {item.text}
       </a.div>
     );

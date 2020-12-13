@@ -1,11 +1,11 @@
 import React from 'react';
 import { a, useSpring } from 'react-spring/three';
 import { MeshDistortMaterial, MeshWobbleMaterial } from '@react-three/drei';
-import * as THREE from 'three';
+import { BoxGeometry } from 'three';
 import { DataCtx } from '../FlowGrid/DataCtx';
 import { Buildboard } from '../Components/Buildboard';
 
-var BuildingGeometry = new THREE.BoxGeometry(1, 1, 1); // create once and reuse
+var BuildingGeometry = new BoxGeometry(1, 1, 1); // create once and reuse
 BuildingGeometry.translate(0.5, 0.5, 0.5);
 
 export const Building = React.memo(

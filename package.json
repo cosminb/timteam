@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode development",
     "test": "jest --watch --noStackTrace  ",
+    "getjson": "webpack --json > stats.json",
     "storybook": "start-storybook --port 50009 -s ./.storybook/images"
   },
   "author": "",
@@ -31,33 +32,19 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/standalone": "^7.12.9",
     "@react-three/drei": "^2.2.7",
-    "@uiw/react-codemirror": "^3.0.1",
-    "babel": "^6.23.0",
-    "codemirror": "^5.58.3",
-    "faker": "^5.1.0",
-    "idb": "^5.0.7",
-    "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.19",
-    "moment": "^2.27.0",
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.56",
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/styles": "^4.9.10",
-    "prettier": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-jss": "^10.3.0",
     "react-spring": "^9.0.0-rc.3",
     "react-three-fiber": "^5.3.4",
-    "react-use-measure": "^2.0.1",
     "regenerator-runtime": "^0.13.7",
-    "three": "^0.123.0",
-    "wink-eng-lite-web-model": "^1.0.0",
-    "wink-nlp": "^1.1.0",
-    "wink-nlp-utils": "^2.0.6"
+    "three": "^0.123.0"
   },
   "jest": {
     "moduleNameMapper": {

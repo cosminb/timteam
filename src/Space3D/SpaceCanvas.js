@@ -1,11 +1,11 @@
 import React from 'react';
 import { Canvas, extend } from 'react-three-fiber';
-import * as THREE from 'three';
+// import * as THREE from 'three';
 import { _ } from '../jams/common';
-import { SpringValue } from 'react-spring';
 import { DataCtx } from '../FlowGrid/DataCtx';
 import { useContextBridge } from '@react-three/drei';
 import { CameraRotation } from './CameraRotation';
+// import { ARButton } from 'three/examples/jsm/webxr/ARButton';
 
 export const SpaceCanvas = ({ children }) => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -17,9 +17,10 @@ export const SpaceCanvas = ({ children }) => {
       pixelRatio={1} //{Math.min(2, isMobile ? window.devicePixelRatio : 1)}
       camera={{ fov: 45, far: 10000, position: [0, 0, 0], rotation: [0, 0, 0] }}
       onCreated={({ gl }) => {
-        gl.setClearColor(new THREE.Color('#020207'), 0.1);
+        gl.setClearColor('#020207', 0.1);
+        // document.body.appendChild(ARButton.createButton(gl));
       }}
-      shadowMap={{ enabled: true, type: THREE.PCFSoftShadowMap }}
+      shadowMap={{ enabled: false }}
       invalidateFrameloop>
       <ContextBridge>
         <pointLight
